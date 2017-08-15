@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html class="wide scrollTo" lang="en">
+
+<head>
+  <title>Intense Product</title>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="keywords" content="intense web design multipurpose template">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cabin:400,700">
+  <link rel="stylesheet" href="css/style.css">
+  <!--[if lt IE 10]><div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img                  src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820"                  alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div><script src="js/html5shiv.min.js"></script><![endif]-->
+</head>
+
+<body>
+  <div class="page text-center">
+    <section class="section section-custom-1 bg-image-change bg-white bg-image novi-background" id="home" data-type="anchor" style="background-image: url(images/bg-01-1920x1000.jpg);">
+      <div class="shell">
+        <div class="range range-xs-middle">
+          <div class="cell-xs-12">
+            <h1 class="text-uppercase text-bold text-darkest">Launch Your Startup Now!</h1>
+            <h6 class="text-dark text-regular">INTENSE is a powerful app designed to support startups of any size.</h6>
+            <div class="group button-group">
+              <a class="btn btn-primary btn-icon btn-icon-left btn-sm" href="#">
+                <span class="icon mdi mdi-basket"></span>
+                <span>GET THIS APP</span>
+              </a>
+              <a class="btn btn-default btn-sm" href="#" tabindex="-1">TRY IT FOR FREE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-custom-image  veil reveal-md-inline-block">
+        <div class="custom-bg-image bg-image-change" style="background-image: url(images/home-05-969x454.jpg);"></div>
+      </div>
+    </section>
+    <section class="section section-relative section-65 section-md-100 novi-background" id="features" data-type="anchor">
+      <div class="shell">
+        <h2>The Benefits of Intense </h2>
+        <h6>There are dozens of useful features and advantages our product offers. With them, your startup or any kind of business project you are about to launch or
+          <br class="veil reveal-lg-inline-block"> manage, is doomed to succeed!</h6>
+        <div class="range range-45 range-xs-center">
+          <div class="cell-xs-10 cell-sm-6 cell-md-4">
+            <article class="box-feature">
+              <span class="box-feature-icon icon icon-lg icon-circle mdi mdi-airplane icon-primary"></span>
+              <h4 class="box-feature-title">Web Design</h4>
+              <p class="box-feature-text">We pay a lot of attention to web design of our clients� projects to make their startups successful.</p>
+            </article>
+          </div>
+          <div class="cell-xs-10 cell-sm-6 cell-md-4">
+            <article class="box-feature">
+              <span class="box-feature-icon icon icon-lg icon-circle mdi mdi-alarm-check icon-primary"></span>
+              <h4 class="box-feature-title">Internet Marketing</h4>
+              <p class="box-feature-text">Intense provides a vast variety of internet marketing tools for your business to achieve great success.</p>
+            </article>
+          </div>
+          <div class="cell-xs-10 cell-sm-6 cell-md-4">
+            <article class="box-feature">
+              <span class="box-feature-icon icon icon-lg icon-circle mdi mdi-battery-charging icon-primary"></span>
+              <h4 class="box-feature-title">Graphic Design</h4>
+              <p class="box-feature-text">With our product you can easily create impressive graphic designs for presenting your startup to investors in a good light.</p>
+            </article>
+          </div>
+          <div class="cell-xs-10 cell-sm-6 cell-md-4">
+            <article class="box-feature">
+              <span class="box-feature-icon icon icon-lg icon-circle mdi mdi-bell-outline icon-primary"></span>
+              <h4 class="box-feature-title">Advanced Statistics</h4>
+              <p class="box-feature-text">Intense supplies your every project with extensive statistics on startups you are managing.</p>
+            </article>
+          </div>
+          <div class="cell-xs-10 cell-sm-6 cell-md-4">
+            <article class="box-feature">
+              <span class="box-feature-icon icon icon-lg icon-circle mdi mdi-cash-multiple icon-primary"></span>
+              <h4 class="box-feature-title">Social Media Support</h4>
+              <p class="box-feature-text">This product can provide full support on social media, giving instant feedback information on all posts about your startup.</p>
+            </article>
+          </div>
+          <div class="cell-xs-10 cell-sm-6 cell-md-4">
+            <article class="box-feature">
+              <span class="box-feature-icon icon icon-lg icon-circle mdi mdi-car-connected icon-primary"></span>
+              <h4 class="box-feature-title">Videography</h4>
+              <p class="box-feature-text">Attractive video presentations can make more impact on your business partners, and that�s why this feature is a part of Intense.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section bg-gray-lighter section-50 novi-background">
+      <div class="shell">
+        <div class="range range-30 range-xs-center range-xs-middle">
+          <div class="cell-sm-6 cell-md-4 cell-lg-2">
+            <img class="img-responsive reveal-inline-block" src="images/client-01-144x63.png" alt="">
+          </div>
+          <div class="cell-sm-6 cell-md-4 cell-lg-2">
+            <img class="img-responsive reveal-inline-block" src="images/client-02-144x63.png" alt="">
+          </div>
+          <div class="cell-sm-6 cell-md-4 cell-lg-2">
+            <img class="img-responsive reveal-inline-block" src="images/client-03-144x63.png" alt="">
+          </div>
+          <div class="cell-sm-6 cell-md-4 cell-lg-2">
+            <img class="img-responsive reveal-inline-block" src="images/client-04-144x63.png" alt="">
+          </div>
+          <div class="cell-sm-6 cell-md-4 cell-lg-2">
+            <img class="img-responsive reveal-inline-block" src="images/client-05-144x63.png" alt="">
+          </div>
+          <div class="cell-sm-6 cell-md-4 cell-lg-2">
+            <img class="img-responsive reveal-inline-block" src="images/client-06-144x63.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-90 section-md-120 novi-background">
+      <div class="shell">
+        <h2>Why use Intense?</h2>
+        <h6>While other similar products offer a few features that you can really consider useful, Intense is always one step ahead
+          <br class="veil reveal-lg-inline-block"> of competitors. Find out why you should use Intense for your startup development below.</h6>
+        <div class="range range-md-middle range-xs-center range-45 range-no-draggable">
+          <div class="cell-sm-12 cell-md-6 cell-md-push-1">
+            <div class="inset-md-1">
+              <div class="section-custom-image-1">
+                <div class="custom-bg-image bg-image-change" style="background-image: url(images/home-06-335x442.jpg)"></div>
+              </div>
+            </div>
+          </div>
+          <div class="cell-sm-5 cell-md-3 text-sm-left">
+            <div class="offset-m-md-right--35">
+              <div class="range-30 range-md-60 unit-wrap">
+                <div class="unit unit-md unit-md-horizontal">
+                  <div class="unit-left">
+                    <span class="icon icon-xxs mdi icon-primary mdi-car-connected"></span>
+                  </div>
+                  <div class="unit-body">
+                    <div class="unit-header">
+                      <h4 class="text-bold">More Advantages</h4>
+                    </div>
+                    <p>Need something more? Then our Premium Subscription is what you are looking for!</p>
+                  </div>
+                </div>
+                <div class="unit unit-md unit-md-horizontal">
+                  <div class="unit-left">
+                    <span class="icon icon-xxs mdi mdi-alarm-check icon-primary"></span>
+                  </div>
+                  <div class="unit-body">
+                    <div class="unit-header">
+                      <h4 class="text-bold">Responsive Design</h4>
+                    </div>
+                    <p>The design of our product allows to use it on any device - it will always look stunning.</p>
+                  </div>
+                </div>
+                <div class="unit unit-md unit-md-horizontal">
+                  <div class="unit-left">
+                    <span class="icon icon-xxs mdi icon-primary mdi-bell-outline"></span>
+                  </div>
+                  <div class="unit-body">
+                    <div class="unit-header">
+                      <h4 class="text-bold">Energy Consumption</h4>
+                    </div>
+                    <p>Even if your gadget�s battery is running low, with Intense you can forget about charging it.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cell-sm-5 cell-md-3 text-sm-left cell-md-push-1">
+            <div class="offset-m-md-left--35">
+              <div class="range-30 range-md-60 unit-wrap">
+                <div class="unit unit-md unit-md-horizontal">
+                  <div class="unit-left">
+                    <span class="icon icon-xxs mdi icon-primary mdi-battery-charging"></span>
+                  </div>
+                  <div class="unit-body">
+                    <div class="unit-header">
+                      <h4 class="text-bold">Free Updates</h4>
+                    </div>
+                    <p>Updating is the key of reliability, and that�s why our clients get free Intense updates .</p>
+                  </div>
+                </div>
+                <div class="unit unit-md unit-md-horizontal">
+                  <div class="unit-left">
+                    <span class="icon icon-xxs mdi icon-primary mdi-cash-multiple"></span>
+                  </div>
+                  <div class="unit-body">
+                    <div class="unit-header">
+                      <h4 class="text-bold">Online Archive</h4>
+                    </div>
+                    <p>Intense includes free access to our online archive of all standard business documents.</p>
+                  </div>
+                </div>
+                <div class="unit unit-md unit-md-horizontal">
+                  <div class="unit-left">
+                    <span class="icon icon-xxs mdi mdi-airplane icon-primary"></span>
+                  </div>
+                  <div class="unit-body">
+                    <div class="unit-header">
+                      <h4 class="text-bold">Cross-Platform</h4>
+                    </div>
+                    <p>Intense provides perfect and flawless compatibility between various platforms.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-md-90 novi-background">
+      <div class="shell-fluid text-md-right">
+        <div class="section-list-absolute">
+          <div class="section-custom-image-2-wrap">
+            <div class="section-custom-image-2">
+              <div class="section-cutom-bg-image-wrap">
+                <div class="custom-bg-image bg-image-change" style="background-image: url(images/home-06-335x442.jpg)"></div>
+              </div>
+            </div>
+          </div>
+          <ul class="list list-unstyled text-left">
+            <li>
+              <div class="unit unit-horizontal unit-spacing-sm">
+                <div class="unit-left">
+                  <span class="icon icon-xxs mdi icon-primary mdi-airplane icon_mod-1"></span>
+                </div>
+                <div class="unit-body">
+                  <div class="unit-header">
+                    <h4 class="text-bold">Employee Management</h4>
+                  </div>
+                  <p>If you need to change information of a single employee, Intense can help you with it.</p>
+                </div>
+              </div>
+              <span class="connector"></span>
+            </li>
+            <li>
+              <div class="unit unit-horizontal unit-spacing-sm">
+                <div class="unit-left">
+                  <span class="icon icon-xxs mdi icon-primary mdi-alarm-check icon_mod-1"></span>
+                </div>
+                <div class="unit-body">
+                  <div class="unit-header">
+                    <h4 class="text-bold">Human Resources</h4>
+                  </div>
+                  <p>This product can help you easily manage all of your company�s human resources.</p>
+                </div>
+              </div>
+              <span class="connector"></span>
+            </li>
+            <li>
+              <div class="unit unit-horizontal unit-spacing-sm">
+                <div class="unit-left">
+                  <span class="icon icon-xxs mdi icon-primary mdi-bell-outline icon_mod-1"></span>
+                </div>
+                <div class="unit-body">
+                  <div class="unit-header">
+                    <h4 class="text-bold">Actual Information</h4>
+                  </div>
+                  <p>Intense uses secure information resources to supply you with actual business information.</p>
+                </div>
+              </div>
+              <span class="connector"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section section-90 novi-background">
+      <div class="shell-fluid text-md-left">
+        <div class="section-list-absolute section-list-absolute-right">
+          <div class="section-custom-image-3-wrap">
+            <div class="section-custom-image-3">
+              <div class="section-cutom-bg-image-wrap">
+                <div class="custom-bg-image bg-image-change" style="background-image: url(images/home-06-335x442.jpg)"></div>
+              </div>
+            </div>
+          </div>
+          <ul class="list list-unstyled text-left">
+            <li>
+              <div class="unit unit-horizontal unit-spacing-sm">
+                <div class="unit-left">
+                  <span class="icon icon-xxs mdi icon-primary mdi-battery-charging icon_mod-1"></span>
+                </div>
+                <div class="unit-body">
+                  <div class="unit-header">
+                    <h4 class="text-bold">Employee Summary</h4>
+                  </div>
+                  <p>You can receive latest information about an employee and his/her work within seconds.</p>
+                </div>
+              </div>
+              <span class="connector"></span>
+            </li>
+            <li>
+              <div class="unit unit-horizontal unit-spacing-sm">
+                <div class="unit-left">
+                  <span class="icon icon-xxs mdi icon-primary mdi-cash-multiple icon_mod-1"></span>
+                </div>
+                <div class="unit-body">
+                  <div class="unit-header">
+                    <h4 class="text-bold">Enterprise Statistics</h4>
+                  </div>
+                  <p>This feature is designed to supply a manager with up-to-date stats about their department.</p>
+                </div>
+              </div>
+              <span class="connector"></span>
+            </li>
+            <li>
+              <div class="unit unit-horizontal unit-spacing-sm">
+                <div class="unit-left">
+                  <span class="icon icon-xxs mdi icon-primary mdi-car-connected icon_mod-1"></span>
+                </div>
+                <div class="unit-body">
+                  <div class="unit-header">
+                    <h4 class="text-bold">History Report</h4>
+                  </div>
+                  <p>To be informed about events of your company, you can use History Report feature.</p>
+                </div>
+              </div>
+              <span class="connector"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section parallax-container" data-parallax-img="images/bg-02-1920x730.jpg">
+      <div class="parallax-content section-90 context-dark">
+        <div class="shell">
+          <h2>What Clients Say</h2>
+          <div class="range range-45 range-xs-center">
+            <div class="cell-sm-6 cell-md-4">
+              <blockquote class="quote quote-slider-2">
+                <img class="quote-img img-circle" src="images/user-alex-merphy-80x80.jpg" alt="" width="80" height="80">
+                <h6 class="quote-author">
+                  <cite class="text-normal">Alex Merphy</cite>
+                </h6>
+                <p class="quote-desc">Ceo/Founder at demolink.com</p>
+                <h6 class="quote-body">Thank you for your prompt response and the help that you gave me. You always have a quick solution to any problem. What an excellent level of customer service!</h6>
+              </blockquote>
+            </div>
+            <div class="cell-sm-6 cell-md-4">
+              <blockquote class="quote quote-slider-2">
+                <img class="quote-img img-circle" src="images/user-alisa-milano-80x80.jpg" alt="" width="80" height="80">
+                <h6 class="quote-author">
+                  <cite class="text-normal">Alisa Milano</cite>
+                </h6>
+                <p class="quote-desc">Sales at demolink.org</p>
+                <h6 class="quote-body">I just want to thank you for your help. I was so pleased and grateful. Keep up the excellent work. Your site provides the best support I have ever encountered.</h6>
+              </blockquote>
+            </div>
+            <div class="cell-sm-6 cell-md-4">
+              <blockquote class="quote quote-slider-2">
+                <img class="quote-img img-circle" src="images/user-july-mao-80x80.jpg" alt="" width="80" height="80">
+                <h6 class="quote-author">
+                  <cite class="text-normal">July Mao</cite>
+                </h6>
+                <p class="quote-desc">Freelance Developer</p>
+                <h6 class="quote-body">Thank you very much for your rapid response. It's no doubt that your company is worth admiring! I have experienced the fastest support ever.</h6>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    &amp;
+    <section class="section section-90 novi-background" id="pages" data-type="anchor">
+      <div class="shell">
+        <h2>Our Plans</h2>
+        <div class="range range-condensed range-lg-center range-xs-bottom range-45">
+          <div class="cell-xs-0 cell-lg-2 text-right veil reveal-lg-block cell-no-draggable">
+            <div class="inset-right-30 section-lg-bottom-120">
+              <h4 class="text-primary text-bold">Available
+                <br> Options</h4>
+              <ul class="list-separated-1 list-unstyled text-uppercase text-shark text-bold text-spacing-120" style="font-size: 10px;">
+                <li>Space amount</li>
+                <li>Number of users</li>
+                <li>Bandwidth Amount</li>
+                <li>Support included</li>
+                <li>Number of databases</li>
+              </ul>
+            </div>
+          </div>
+          <div class="cell-md-4 cell-lg-3">
+            <div class="box-planning box-planning-type-3">
+              <div class="box-planning-header bg-shark context-dark">
+                <div class="box-planning-label">
+                  <p class="big">Most Popular</p>
+                </div>
+                <h3>Starter</h3>
+                <p class="h2 plan-price">
+                  <sup class="big">$</sup>19
+                  <sub class="text-white">/month</sub>
+                </p>
+              </div>
+              <div class="box-planning-body">
+                <ul class="list-separated list-unstyled">
+                  <li>
+                    <span class="h6 text-bold text-darkest">5GB</span>
+                    <span class="h6 text-dark">Space amount</span>
+                  </li>
+                  <li>
+                    <span class="h6 text-bold text-darkest">20</span>
+                    <span class="h6 text-dark">users</span>
+                  </li>
+                  <li>
+                    <span class="h6 text-bold text-darkest">10GB</span>
+                    <span class="h6 text-dark">Bandwidth</span>
+                  </li>
+                  <li>
+                    <span class="text-middle icon icon-xxs mdi mdi-close text-danger"></span>
+                  </li>
+                  <li>
+                    <span class="h6 text-bold text-darkest">1</span>
+                    <span class="h6 text-dark">Database</span>
+                  </li>
+                </ul>
+                <a class="btn btn-block btn-default btn-sm" href="#">TRY IT NOW</a>
+              </div>
+            </div>
+          </div>
+          <div class="cell-md-4 cell-lg-3">
+            <div class="box-planning box-planning-type-3 active">
+              <div class="box-planning-header bg-primary context-dark">
+                <div class="box-planning-label">
+                  <p class="big">Most Popular</p>
+                </div>
+                <h3>Business</h3>
+                <p class="h2 plan-price">
+                  <sup class="big">$</sup>59
+                  <sub class="text-white">/month</sub>
+                </p>
+              </div>
+              <div class="box-planning-body">
+                <ul class="list-separated list-unstyled">
+                  <li>
+                    <span class="h6 text-bold text-darkest">10GB</span>
+                    <span class="h6 text-dark">Space amount</span>
+                  </li>
+                  <li>
+                    <span class="h6 text-bold text-darkest">Unlimited</span>
+                    <span class="h6 text-dark">users</span>
+                  </li>
+                  <li>
+                    <span class="h6 text-bold text-darkest">30GB</span>
+                    <span class="h6 text-dark">Bandwidth</span>
+                  </li>
+                  <li>
+                    <span class="text-middle icon icon-xxs mdi mdi-check text-success"></span>
+                  </li>
+                  <li>
+                    <span class="h6 text-bold text-darkest">20</span>
+                    <span class="h6 text-dark">Databases</span>
+                  </li>
+                </ul>
+                <a class="btn btn-block btn-default btn-sm" href="#">TRY IT NOW</a>
+              </div>
+            </div>
+          </div>
+          <div class="cell-md-4 cell-lg-3">
+            <div class="box-planning box-planning-type-3">
+              <div class="box-planning-header bg-shark context-dark">
+                <div class="box-planning-label">
+                  <p class="big">Most Popular</p>
+                </div>
+                <h3>Ultimate</h3>
+                <p class="h2 plan-price">
+                  <sup class="big">$</sup>99
+                  <sub class="text-white">/month</sub>
+                </p>
+              </div>
+              <div class="box-planning-body">
+                <ul class="list-separated list-unstyled">
+                  <li>
+                    <span class="h6 text-bold text-darkest">100GB</span>
+                    <span class="h6 text-dark">Space amount</span>
+                  </li>
+                  <li>
+                    <span class="h6 text-bold text-darkest">Unlimited</span>
+                    <span class="h6 text-dark">users</span>
+                  </li>
+                  <li>
+                    <span class="h6 text-bold text-darkest">60GB</span>
+                    <span class="h6 text-dark">Bandwidth</span>
+                  </li>
+                  <li>
+                    <span class="text-middle icon icon-xxs mdi mdi-check text-success"></span>
+                  </li>
+                  <li>
+                    <span class="h6 text-bold text-darkest">Unlimited</span>
+                    <span class="h6 text-dark">Databases</span>
+                  </li>
+                </ul>
+                <a class="btn btn-block btn-default btn-sm" href="#">TRY IT NOW</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section bg-gray-base context-dark bg-image bg-image-change novi-background" style="background-image: url(images/bg-03-1920x546.jpg);">
+      <div class="section-90 section-md-110">
+        <div class="shell">
+          <div class="range range-xs-center">
+            <div class="cell-sm-10 cell-md-7 cell-lg-6">
+              <h2>Contact Us</h2>
+              <p>You can contact us any way that is convenient for you. We are available 24/7 via fax or email. You can also use a quick contact form below or visit our office personally.</p>
+              <form class="rd-mailform form-light" data-form-output="form-output-global"
+                data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                <div class="range range-no-draggable range-narrow range-10 range-mailform">
+                  <div class="cell-sm-6 cell-mailform">
+                    <div class="form-group">
+                      <label class="form-label" for="form-name">Name</label>
+                      <input class="form-control" id="form-name" type="text" name="name" data-constraints="@Required">
+                    </div>
+                  </div>
+                  <div class="cell-sm-6 cell-mailform">
+                    <div class="form-group">
+                      <label class="form-label" for="form-email">E-mail</label>
+                      <input class="form-control" id="form-email" type="email" name="email" data-constraints="@Required @Email">
+                    </div>
+                  </div>
+                  <div class="cell-xs-12 cell-mailform">
+                    <div class="form-group">
+                      <label class="form-label" for="form-message">Message</label>
+                      <textarea class="form-control" id="form-message" name="message" data-constraints="@Required"></textarea>
+                    </div>
+                  </div>
+                  <div class="cell-xs-12 cell-mailform">
+                    <button class="btn btn-primary" type="submit">Send Message</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="section section-relative section-50 section-sm-top-90 section-sm-bottom-34 page-footer bg-gray-base context-dark novi-background">
+      <div class="shell text-lg-left">
+        <div class="range range-xs-center range-45">
+          <div class="cell-xs-12 cell-sm-6 cell-md-4">
+            <div class="footer-brand">
+              <a href="index.html">
+                <img class="img-responsive reveal-inline-block" src="images/logo-dark-197x52.png" alt="">
+              </a>
+            </div>
+            <ul class="list-inline">
+              <li>
+                <a class="icon mdi mdi-facebook icon-xxs icon-circle icon-gray-darkest-filled" href="#"></a>
+              </li>
+              <li>
+                <a class="icon mdi mdi-twitter icon-xxs icon-circle icon-gray-darkest-filled" href="#"></a>
+              </li>
+              <li>
+                <a class="icon mdi mdi-google-plus icon-xxs icon-circle icon-gray-darkest-filled" href="#"></a>
+              </li>
+              <li>
+                <a class="icon mdi mdi-linkedin icon-xxs icon-circle icon-gray-darkest-filled" href="#"></a>
+              </li>
+            </ul>
+          </div>
+          <div class="cell-xs-7 cell-sm-5 text-xs-left cell-md-4">
+            <h6 class="text-uppercase text-spacing-60 text-bold">Latest news</h6>
+            <div class="post-list">
+              <article class="post widget-post text-left text-primary">
+                <a href="#">
+                  <div class="unit unit-horizontal unit-spacing-xs unit-middle">
+                    <div class="unit-body">
+                      <div class="post-meta">
+                        <span class="icon-xxs mdi mdi-arrow-right"></span>
+                        <time class="text-darker" datetime="2016-01-01">05/14/2015</time>
+                      </div>
+                      <div class="post-title">
+                        <h6 class="text-regular">Let�s Change the World</h6>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </article>
+              <article class="post widget-post text-left text-primary">
+                <a href="#">
+                  <div class="unit unit-horizontal unit-spacing-xs unit-middle">
+                    <div class="unit-body">
+                      <div class="post-meta">
+                        <span class="icon-xxs mdi mdi-arrow-right"></span>
+                        <time class="text-darker" datetime="2016-01-01">05/14/2015</time>
+                      </div>
+                      <div class="post-title">
+                        <h6 class="text-regular">The Meaning of Web Design</h6>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            </div>
+          </div>
+          <div class="cell-xs-12 cell-sm-8 cell-md-4 text-md-left">
+            <h6 class="text-uppercase text-spacing-60 text-bold">Newsletter</h6>
+            <p style="font-size: 15px;">Keep up with our always upcoming product features and technologies. Enter your e-mail and subscribe to our newsletter.</p>
+            <form class="campaign-mailform rd-mailform-subscribe" data-form-output="form-output-global" method="post" action="http://templatemonster1.createsend.com/t/d/s/xlyhhk/">
+              <div class="form-group">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon">
+                    <span class="input-group-icon mdi mdi-email"></span>
+                  </span>
+                  <input class="form-control" placeholder="Enter your E-Mail" type="email" name="cm-xlyhhk-xlyhhk" data-constraints="@Required @Email">
+                  <span class="input-group-btn">
+                    <button class="btn btn-sm btn-primary" type="submit">Subscribe</button>
+                  </span>
+                </div>
+              </div>
+              <div class="form-output" id="form-subscribe-footer"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="shell">
+        <div class="small text-darker">
+          <span>Intense �</span>
+          <span class="copyright-year reveal-inline-block"></span>
+          <a href="#" tabindex="-1">. Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <div class="snackbars" id="form-output-global"></div>
+  <script src="js/core.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

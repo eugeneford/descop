@@ -1,5 +1,2 @@
-import getOuterHTMLPosition from "./getOuterHTMLPosition";
-
-module.exports = {
-  getOuterHTMLPosition
-};
+import Descop from "./Descop.class";
+module.exports = Descop;

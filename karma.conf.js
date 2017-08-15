@@ -9,16 +9,15 @@ module.exports = function(config) {
       type: 'lcov', dir: 'coverage/'
     },
     files: [
-      'dist/collit.js',
+      'dist/descop.js',
       'test/*.js'
     ],
     preprocessors: {
-      'dist/collit.js': ['coverage']
+      'dist/descop.js': ['coverage']
     },
     reporters: ['progress', 'coverage', 'coveralls'],
     port: 9876,
-    browsers: ['PhantomJS'],
-    singleRun: true,
+    autoWatch: true,
     captureTimeout: 4 * 60 * 1000
   })
 };

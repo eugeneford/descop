@@ -44,5 +44,8 @@
       "es2015",
       "es2016"
     ]
+  },
+  "dependencies": {
+    "streader": "^1.0.0"
   }
 }

@@ -1,7 +1,7 @@
 path = require("path");
 
 module.exports = {
-  entry: "./src/descop",
+  entry: "./src/Descop",
   output: {
     filename: "./dist/descop.js",
     libraryTarget: 'umd',
