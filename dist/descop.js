@@ -56,34 +56,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 
-	var _DocumentUtils = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./DocumentUtils\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _Descop = __webpack_require__(1);
 
-	var DocumentUtils = _interopRequireWildcard(_DocumentUtils);
-
-	var _DocumentNode = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./utils/DocumentNode\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var DocumentNode = _interopRequireWildcard(_DocumentNode);
-
-	var _HTMLUtils = __webpack_require__(3);
-
-	var HTMLUtils = _interopRequireWildcard(_HTMLUtils);
-
-	var _HTMLEntitifier = __webpack_require__(6);
-
-	var _HTMLEntitifier2 = _interopRequireDefault(_HTMLEntitifier);
+	var _Descop2 = _interopRequireDefault(_Descop);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	module.exports = {
-	  DocumentNode: DocumentNode, DocumentUtils: DocumentUtils, HTMLUtils: HTMLUtils, HTMLEntitifier: _HTMLEntitifier2.default
-	};
+	module.exports = _Descop2.default;
 
 /***/ }),
-/* 1 */,
-/* 2 */,
-/* 3 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -91,113 +73,199 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.findFragmentPosition = findFragmentPosition;
-	exports.test = test;
-	exports.findFragment = findFragment;
 
-	var _streader = __webpack_require__(5);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _streader = __webpack_require__(2);
 
 	var _streader2 = _interopRequireDefault(_streader);
 
-	var _HTMLEntitifier = __webpack_require__(6);
+	var _cache = __webpack_require__(3);
 
-	var _HTMLEntitifier2 = _interopRequireDefault(_HTMLEntitifier);
+	var _cache2 = _interopRequireDefault(_cache);
+
+	var _documentNodes = __webpack_require__(4);
+
+	var _harmonizeHTML = __webpack_require__(5);
+
+	var _harmonizeHTML2 = _interopRequireDefault(_harmonizeHTML);
+
+	var _entitifier = __webpack_require__(6);
+
+	var _getHTMLBeforeElement = __webpack_require__(7);
+
+	var _getHTMLBeforeElement2 = _interopRequireDefault(_getHTMLBeforeElement);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var entitifier = new _HTMLEntitifier2.default();
-	var hReader = new _streader2.default("");
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	/**
-	 *
-	 * @param fragment
-	 * @param html
-	 * @returns {{start: number, end: number}|null}
+	 * A standardized way to find
+	 * a source code position of document element
 	 */
-	function findFragmentPosition(fragment, html) {
-	  if (typeof fragment !== "string") throw new TypeError("Fragment should be a String.");
-	  if (typeof html !== "string") throw new TypeError("Fragment should be a String.");
-	  // const entitifier = new HTMLEntitifier();
-	  // const hReader = new StringReader(html);
-	  hReader.setSource(html);
-	  var fEntities = entitifier.entitify(harmonizeHTML(fragment, html));
-	  var hChar = void 0,
-	      fChar = void 0,
-	      founded = void 0,
-	      start = void 0,
-	      end = void 0,
-	      i = void 0,
-	      j = void 0,
-	      variations = void 0,
-	      entity = void 0;
+	var Descop = function () {
+	  function Descop() {
+	    _classCallCheck(this, Descop);
 
-	  i = 0;
-	  while (i < fEntities.length && !hReader.eof()) {
-	    founded = false;
-	    entity = fEntities[i];
-	    variations = entity.variations;
-	    fChar = entity.origin;
-	    hChar = hReader.peek();
+	    this._sourceReader = new _streader2.default('');
+	    this._fragmentReader = new _streader2.default('');
+	    this._cache = new _cache2.default();
+	    this._html = null;
+	    this._dom = null;
+	  }
 
-	    if (fChar !== hChar && !/\r?\n|\s|\t/.test(fChar) && /\r?\n|\s|\t/.test(hChar)) {
-	      hReader.skipPattern(/(\r?\n|\s|\t)+/);
+	  /**
+	   * Connects an html source to Descop instance
+	   * @param html - target html source code
+	   * @throws TypeError - if {html} is not a String
+	   */
+
+
+	  _createClass(Descop, [{
+	    key: "connectSource",
+	    value: function connectSource(html) {
+	      if (typeof html !== "string") throw new TypeError("HTML must be a String");
+	      this._html = html;
+	      this._sourceReader.setSource(html);
 	    }
 
-	    for (j = 0; j < variations.length; j++) {
-	      fChar = variations[j];
-	      hChar = hReader.peek(1, fChar.length);
+	    /**
+	     * Connects a document to Descop instance
+	     * @param dom - target document
+	     * @throws TypeError - if {dom} is not a DOCUMENT_NODE
+	     */
 
-	      if (fChar === hChar) {
-	        if (typeof start === "undefined") start = hReader.getIndex();
-	        hReader.skip(fChar.length);
-	        if (i === fEntities.length - 1) end = hReader.getIndex();
-	        founded = true;
-	        break;
+	  }, {
+	    key: "connectDocument",
+	    value: function connectDocument(dom) {
+	      if (!(0, _documentNodes.isDocument)(dom)) throw new TypeError("Dom must be a DOCUMENT_NODE");
+	      this._dom = dom;
+	    }
+
+	    /**
+	     * Returns the position (start and end offset) of the first occurrence of specified html
+	     * fragment inside connected html source
+	     * @param fragment — html string to search for
+	     * @param fromIndex — index to start search from
+	     */
+
+	  }, {
+	    key: "findFragmentPosition",
+	    value: function findFragmentPosition(fragment) {
+	      var fromIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+	      if (!this._html) throw new Error("Source is not connected");
+	      if (typeof fragment !== "string") throw new TypeError("Fragment should be a String.");
+	      var fragmentReader = this._fragmentReader;
+	      var sourceReader = this._sourceReader;
+
+	      // Harmonize fragment with source html
+	      var _fragment = (0, _harmonizeHTML2.default)(fragment, this._html);
+
+	      // Reset fragment reader with new html
+	      fragmentReader.setSource(_fragment);
+
+	      // Set start position for html reader
+	      sourceReader.reset();
+	      sourceReader.skip(fromIndex);
+
+	      var entities = void 0,
+	          fragmentChar = void 0,
+	          sourceChar = void 0,
+	          appropriateEntity = void 0,
+	          start = -1,
+	          end = -1;
+
+	      while (!fragmentReader.eof() && !sourceReader.eof()) {
+	        fragmentChar = fragmentReader.read();
+	        entities = (0, _entitifier.getEntities)(fragmentChar);
+	        sourceChar = sourceReader.peek();
+
+	        // Skip unnecessary whitespaces inside source html
+	        if (fragmentChar !== sourceChar && !/\r?\n|\s|\t/.test(fragmentChar) && /\r?\n|\s|\t/.test(sourceChar)) {
+	          sourceReader.skipPattern(/(\r?\n|\s|\t)+/);
+	        }
+
+	        // Try to find appropriate entity
+	        appropriateEntity = entities.find(function (entity) {
+	          return entity === sourceReader.peek(entity.length);
+	        });
+
+	        // Reset fragment reader if entity was not found
+	        if (!appropriateEntity) {
+	          fragmentReader.reset();
+	          start = -1;
+	          sourceReader.skip();
+	        }
+	        // Otherwise, continue matching
+	        else {
+	            if (start === -1) start = sourceReader.getIndex();
+	            sourceReader.skip(appropriateEntity.length);
+	            if (fragmentReader.eof()) end = sourceReader.getIndex();
+	          }
 	      }
+
+	      // Return position if start and end was found
+	      if (start > -1 && end > -1) return { start: start, end: end };
+	      // Otherwise, return null
+	      return null;
 	    }
 
-	    if (!founded) {
-	      i = 0;
-	      start = undefined;
-	      hReader.skip(1);
-	    } else {
-	      i = i + 1;
+	    /**
+	     * Returns the first occurrence of specified html fragment inside connected html source
+	     * @param fragment — html string to search for
+	     * @param fromIndex — index to start search from
+	     * @returns {string|null}  
+	     */
+
+	  }, {
+	    key: "findFragment",
+	    value: function findFragment(fragment, fromIndex) {
+	      var position = this.findFragmentPosition(fragment, fromIndex);
+	      return position ? this._html.substring(position.start, position.end) : null;
 	    }
-	  }
 
-	  if (typeof start === "undefined" || typeof end === "undefined") return null;
+	    /**
+	     * Returns the position (start and end offset) of target element in source html code
+	     * @param element — element to search for
+	     * @return {string|null}
+	     */
 
-	  return { start: start, end: end };
-	}
+	  }, {
+	    key: "findElementPosition",
+	    value: function findElementPosition(element) {
+	      if (!this._dom) throw new Error("Document is not connected");
+	      if (!(0, _documentNodes.isElement)(element)) throw new TypeError("Element must be an ELEMENT_NODE");
+	      if (this._dom !== element.ownerDocument) throw new Error("Element must be a child of connected Document");
+	      var preffixHTML = (0, _getHTMLBeforeElement2.default)(element);
+	      var preffixPosition = this.findFragmentPosition(preffixHTML);
+	      // Throw an error if preffix position was not found
+	      if (!preffixPosition) throw new Error("Data corrupt. Element can not be found");
+	      return this.findFragmentPosition(element.outerHTML, preffixPosition.end);
+	    }
 
-	function test(fragment, html) {
-	  var hReader = new StringReader(html);
-	  var fReader = new StringReader(fragment);
-	  var fChar = void 0,
-	      hChar = void 0;
+	    /**
+	     * Returns the source html code of target element
+	     * @param element — element to search for
+	     * @return {string|null}
+	     */
 
-	  while (!fReader.eof() && !hReader.eof()) {
-	    fChar = fReader.peek();
-	    hChar = hReader.peek();
+	  }, {
+	    key: "findElement",
+	    value: function findElement(element) {
+	      var position = this.findElementPosition(element);
+	      return position ? this._html.substring(position.start, position.end) : null;
+	    }
+	  }]);
 
-	    fReader.skip();
-	  }
-	}
+	  return Descop;
+	}();
 
-	/**
-	 * Returns the first occurrence of specified html fragment in target html string
-	 * @param fragment — html string to search for
-	 * @param html — html string to search in
-	 * @returns {string|null}
-	 */
-	function findFragment(fragment, html) {
-	  var position = findFragmentPosition(fragment, html);
-	  return position ? html.substring(position.start, position.end) : null;
-	}
+	exports.default = Descop;
 
 /***/ }),
-/* 4 */,
-/* 5 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -557,8 +625,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	;
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 3 */
+/***/ (function(module, exports) {
 
 	"use strict";
 
@@ -568,15 +636,227 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _streader = __webpack_require__(5);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var _streader2 = _interopRequireDefault(_streader);
+	/**
+	 * A proper way to store some data
+	 */
+	var Cache = function () {
+	  function Cache() {
+	    _classCallCheck(this, Cache);
+
+	    this._cache = [];
+	  }
+
+	  /**
+	   * Puts some data to cache with specified key
+	   * @param key
+	   * @param data
+	   * @throws Error - if data if passed key is already exists
+	   */
+
+
+	  _createClass(Cache, [{
+	    key: "put",
+	    value: function put(key, data) {
+	      if (this.exists(key)) throw new Error("A record with target key is already exists");
+	      this._cache.push({ key: key, data: data });
+	    }
+
+	    /**
+	     * Gets a data from a cache record with specified key
+	     * @param key
+	     * @return {*}
+	     */
+
+	  }, {
+	    key: "get",
+	    value: function get(key) {
+	      var record = this._cache.find(function (record) {
+	        return record.key === key;
+	      });
+	      return record ? record.data : null;
+	    }
+
+	    /**
+	     * Refreshes a cache record with specified data
+	     * @param key
+	     * @param data
+	     */
+
+	  }, {
+	    key: "update",
+	    value: function update(key, data) {
+	      var index = this.indexOf(key);
+	      if (index === -1) throw new Error("A record with target key is not exists");
+	      this._cache[index].data = data;
+	    }
+
+	    /**
+	     * Checks if a cache record with target key is exists
+	     * @param key
+	     * @return {boolean}
+	     */
+
+	  }, {
+	    key: "exists",
+	    value: function exists(key) {
+	      return this._indexOf(key) > -1;
+	    }
+
+	    /**
+	     * Gets the index of target cache record
+	     * @param key
+	     * @return {number}
+	     * @private
+	     */
+
+	  }, {
+	    key: "_indexOf",
+	    value: function _indexOf(key) {
+	      return this._cache.findIndex(function (record) {
+	        return record.key === key;
+	      });
+	    }
+	  }]);
+
+	  return Cache;
+	}();
+
+	exports.default = Cache;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.isElement = isElement;
+	exports.isText = isText;
+	exports.isComment = isComment;
+	exports.isDocument = isDocument;
+	exports.isDocumentType = isDocumentType;
+	exports.isDocumentFragment = isDocumentFragment;
+	var types = exports.types = {
+	  ELEMENT_NODE: 1,
+	  TEXT_NODE: 3,
+	  COMMENT_NODE: 8,
+	  DOCUMENT_NODE: 9,
+	  DOCUMENT_TYPE_NODE: 10,
+	  DOCUMENT_FRAGMENT_NODE: 11
+	};
+
+	/**
+	 * Check if {node} is an ELEMENT_NODE
+	 * @param node - node to test
+	 * @returns {boolean}
+	 */
+	function isElement(node) {
+	  return node.nodeType === types.ELEMENT_NODE;
+	}
+
+	/**
+	 * Check if {node} is an TEXT_NODE
+	 * @param node - node to test
+	 * @returns {boolean}
+	 */
+	function isText(node) {
+	  return node.nodeType === types.TEXT_NODE;
+	}
+
+	/**
+	 * Check if {node} is an COMMENT_NODE
+	 * @param node - node to test
+	 * @returns {boolean}
+	 */
+	function isComment(node) {
+	  return node.nodeType === types.COMMENT_NODE;
+	}
+
+	/**
+	 * Check if {node} is an DOCUMENT_NODE
+	 * @param node - node to test
+	 * @returns {boolean}
+	 */
+	function isDocument(node) {
+	  return node.nodeType === types.DOCUMENT_NODE;
+	}
+
+	/**
+	 * Check if {node} is an DOCUMENT_TYPE_NODE
+	 * @param node - node to test
+	 * @returns {boolean}
+	 */
+	function isDocumentType(node) {
+	  return node.nodeType === types.DOCUMENT_TYPE_NODE;
+	}
+
+	/**
+	 * Check if {node} is an DOCUMENT_FRAGMENT_NODE
+	 * @param node - node to test
+	 * @returns {boolean}
+	 */
+	function isDocumentFragment(node) {
+	  return node.nodeType === types.DOCUMENT_FRAGMENT_NODE;
+	}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * Harmonizes targetHTML basing on sampleHTML
+	 * @param targetHTML
+	 * @param sampleHTML
+	 * @return {string}
+	 */
+	function harmonizeHTML(targetHTML, sampleHTML) {
+	  if (typeof targetHTML !== "string") throw new TypeError("Target HTML should be a String.");
+	  if (typeof sampleHTML !== "string") throw new TypeError("Sample HTML should be a String.");
+	  var harmonizedHTML = targetHTML;
+	  if (!/<html\s*.*>/i.test(sampleHTML)) {
+	    harmonizedHTML = harmonizedHTML.replace(/<\/?html>/gi, "");
+	  }
+	  if (!/<head\s*.*>/i.test(sampleHTML)) {
+	    harmonizedHTML = harmonizedHTML.replace(/<\/?head>/gi, "");
+	  }
+	  if (!/<body\s*.*>/i.test(sampleHTML)) {
+	    harmonizedHTML = harmonizedHTML.replace(/<\/?body>/gi, "");
+	  }
+	  return harmonizedHTML;
+	}
+
+	exports.default = harmonizeHTML;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getEntityCode = getEntityCode;
+	exports.generateEntities = generateEntities;
+	exports.getEntities = getEntities;
+
+	var _cache = __webpack_require__(3);
+
+	var _cache2 = _interopRequireDefault(_cache);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var ENTITIES = {
+	var cache = new _cache2.default();
+	var HTML_ENTITIES = {
 	  10: ["\r\n"],
 	  32: ["\t", "\n", "\r\n"],
 	  34: ["&quot;", "'"],
@@ -857,88 +1137,144 @@ return /******/ (function(modules) { // webpackBootstrap
 	  9830: ["&diams;"]
 	};
 
-	var HTMLEntitifier = function () {
-	  function HTMLEntitifier() {
-	    _classCallCheck(this, HTMLEntitifier);
+	/**
+	 * Get html entity code from specified char
+	 * @param char - char to get html entity code for
+	 * @returns {string} - html entity number
+	 */
+	function getEntityCode(char) {
+	  return "&#" + char.charCodeAt(0) + ";";
+	}
 
-	    this.reader = new _streader2.default('');
+	function generateEntities(char) {
+	  if (typeof name !== "string") throw new TypeError("Type of target name should be a String");
+	  var entities = [],
+	      charCode = char.charCodeAt(0),
+	      lowerCase = void 0,
+	      upperCase = void 0;
+
+	  // Add character html entities if exists
+	  if (HTML_ENTITIES.hasOwnProperty(charCode)) {
+	    entities = entities.concat(HTML_ENTITIES[charCode]);
 	  }
 
-	  /**
-	   * Get html entity code from specified charCode
-	   * @param charCode - charCode to get html entity code for
-	   * @returns {string} - html entity number
-	   */
+	  // Add character html number entity
+	  entities.push(getEntityCode(char));
 
+	  // Add lower case character variation
+	  lowerCase = char.toLowerCase();
+	  entities.push(lowerCase);
 
-	  _createClass(HTMLEntitifier, [{
-	    key: "getCharEntityCode",
-	    value: function getCharEntityCode(charCode) {
-	      return "&#" + charCode + ";";
-	    }
+	  // Add upper case character variation if exists
+	  upperCase = char.toUpperCase();
+	  if (lowerCase !== upperCase) entities.push(upperCase);
 
-	    /**
-	     * Get the html entities representation of specified char
-	     * @param char — char to get html entities for
-	     * @throws TypeError - if {char} is not a Number
-	     * @returns {Array|Null} — list of html entities
-	     */
+	  return entities;
+	}
 
-	  }, {
-	    key: "getCharEntities",
-	    value: function getCharEntities(char) {
-	      if (typeof name !== "string") throw new TypeError("Type of target name should be a String");
-	      var entities = [],
-	          charCode = char.charCodeAt(0),
-	          lowerCase = void 0,
-	          upperCase = void 0;
+	/**
+	 * Gets the html entities representation of specified char
+	 * @param char — char to get html entities for
+	 * @throws TypeError - if {char} is not a Number
+	 * @returns {Array|Null} — list of html entities
+	 */
+	function getEntities(char) {
+	  if (typeof char !== "string") throw new TypeError("Type of target name should be a String");
+	  var key = char.toLowerCase();
 
-	      // Add character html entities if exists
-	      if (ENTITIES.hasOwnProperty(charCode)) {
-	        entities = entities.concat(ENTITIES[charCode]);
+	  // Try to return an early cached entities
+	  if (cache.exists(key)) return cache.get(key);
+	  // Otherwise, generate new entities
+	  var entities = generateEntities(char);
+	  // Store generated entities in cache
+	  cache.put(key, entities);
+
+	  return entities;
+	}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _documentNodes = __webpack_require__(4);
+
+	var _isRootElement = __webpack_require__(8);
+
+	var _isRootElement2 = _interopRequireDefault(_isRootElement);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Creates the document.documentElement.outerHTML substring up to target element
+	 * @param element — element to get index of
+	 * @returns {string|null} — the index element was found at
+	 */
+	function getHTMLBeforeElement(element) {
+	  if (!(0, _documentNodes.isElement)(element)) throw new TypeError("Element is not an ELEMENT_NODE");
+	  if ((0, _isRootElement2.default)(element)) return null;
+
+	  var serializer = new XMLSerializer();
+	  var elem = element,
+	      html = "";
+
+	  while (elem) {
+	    // Try to add a previous sibling html
+	    if (elem.previousSibling) {
+	      elem = elem.previousSibling;
+	      switch (elem.nodeType) {
+	        case _documentNodes.types.ELEMENT_NODE:
+	          html = elem.outerHTML + html;
+	          break;
+	        case _documentNodes.types.TEXT_NODE:
+	          html = elem.data + html;
+	          break;
+	        default:
+	          // Comments and other stuff
+	          html = serializer.serializeToString(elem) + html;
+	          break;
 	      }
-
-	      // Add character html number entity
-	      entities.push(this.getCharEntityCode(charCode));
-
-	      // Add lower case character variation
-	      lowerCase = char.toLowerCase();
-	      entities.push(lowerCase);
-
-	      // Add upper case character variation if exists
-	      upperCase = char.toUpperCase();
-	      if (lowerCase !== upperCase) entities.push(upperCase);
-
-	      return entities;
 	    }
-	  }, {
-	    key: "entitify",
-	    value: function entitify(html) {
-	      var char = void 0,
-	          entity = void 0,
-	          entities = [];
-
-	      this.reader.setSource(html);
-
-	      while (!this.reader.eof()) {
-	        char = this.reader.read();
-
-	        entity = {
-	          origin: char,
-	          variations: this.getCharEntities(char)
-	        };
-
-	        entities.push(entity);
+	    // Or try to add parentElement's opening tag
+	    else if (elem = elem.parentElement) {
+	        html = elem.outerHTML.substring(0, elem.outerHTML.indexOf(elem.innerHTML)) + html;
 	      }
+	  }
 
-	      return entities;
-	    }
-	  }]);
+	  return html;
+	}
 
-	  return HTMLEntitifier;
-	}();
+	exports.default = getHTMLBeforeElement;
 
-	exports.default = HTMLEntitifier;
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _documentNodes = __webpack_require__(4);
+
+	/**
+	 * Check if target {element} is a document's root element
+	 * @param element — element to test
+	 * @throws TypeError — if {element} is not an ELEMENT_NODE
+	 * @returns {boolean}
+	 */
+	function isRootElement(element) {
+	  if (!(0, _documentNodes.isElement)(element)) throw new TypeError("Element is not an ELEMENT_NODE");
+	  return element.ownerDocument.documentElement === element;
+	}
+
+	exports.default = isRootElement;
 
 /***/ })
 /******/ ])

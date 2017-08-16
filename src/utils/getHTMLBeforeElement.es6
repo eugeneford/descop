@@ -1,4 +1,4 @@
-import { isElement } from "./documentNodes";
+import { isElement, types } from "./documentNodes";
 import isRootElement from "./isRootElement";
 
 /**
@@ -18,10 +18,10 @@ function getHTMLBeforeElement(element) {
     if (elem.previousSibling) {
       elem = elem.previousSibling;
       switch (elem.nodeType) {
-        case Node.types.ELEMENT_NODE:
+        case types.ELEMENT_NODE:
           html = elem.outerHTML + html;
           break;
-        case Node.types.TEXT_NODE:
+        case types.TEXT_NODE:
           html = elem.data + html;
           break;
         default: // Comments and other stuff

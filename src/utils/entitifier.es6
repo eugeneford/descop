@@ -1,4 +1,7 @@
-export default {
+import Cache from "./cache";
+
+const cache = new Cache();
+const HTML_ENTITIES = {
   10: ["\r\n"],
   32: ["\t", "\n", "\r\n"],
   34: ["&quot;", "'"],
@@ -278,3 +281,56 @@ export default {
   9829: ["&hearts;"],
   9830: ["&diams;"]
 };
+
+/**
+ * Get html entity code from specified char
+ * @param char - char to get html entity code for
+ * @returns {string} - html entity number
+ */
+export function getEntityCode(char) {
+  return `&#${char.charCodeAt(0)};`;
+}
+
+export function generateEntities(char){
+  if (typeof name !== "string") throw new TypeError("Type of target name should be a String");
+  let entities = [], charCode = char.charCodeAt(0), lowerCase, upperCase;
+
+  // Add character html entities if exists
+  if (HTML_ENTITIES.hasOwnProperty(charCode)) {
+    entities = entities.concat(HTML_ENTITIES[charCode]);
+  }
+
+  // Add character html number entity
+  entities.push(getEntityCode(char));
+
+  // Add lower case character variation
+  lowerCase = char.toLowerCase();
+  entities.push(lowerCase);
+
+  // Add upper case character variation if exists
+  upperCase = char.toUpperCase();
+  if (lowerCase !== upperCase) entities.push(upperCase);
+
+  return entities;
+}
+
+/**
+ * Gets the html entities representation of specified char
+ * @param char — char to get html entities for
+ * @throws TypeError - if {char} is not a Number
+ * @returns {Array|Null} — list of html entities
+ */
+export function getEntities(char) {
+  if (typeof char !== "string") throw new TypeError("Type of target name should be a String");
+  let key = char.toLowerCase();
+
+  // Try to return an early cached entities
+  if (cache.exists(key)) return cache.get(key);
+  // Otherwise, generate new entities
+  let entities = generateEntities(char);
+  // Store generated entities in cache
+  cache.put(key, entities);
+
+  return entities;
+}
+
