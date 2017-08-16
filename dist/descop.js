@@ -116,13 +116,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 
 	  /**
-	   * Connects an html source to Descop instance
-	   * @param html - target html source code
-	   * @throws TypeError - if {html} is not a String
+	   * Gets current html source
+	   * @return {string|null}
 	   */
 
 
 	  _createClass(Descop, [{
+	    key: "getSource",
+	    value: function getSource() {
+	      return this._html;
+	    }
+
+	    /**
+	     * Gets current document
+	     * @return {Document|null}
+	     */
+
+	  }, {
+	    key: "getDocument",
+	    value: function getDocument() {
+	      return this._dom;
+	    }
+
+	    /**
+	     * Connects an html source to Descop instance
+	     * @param html - target html source code
+	     * @throws TypeError - if {html} is not a String
+	     */
+
+	  }, {
 	    key: "connectSource",
 	    value: function connectSource(html) {
 	      if (typeof html !== "string") throw new TypeError("HTML must be a String");
@@ -146,8 +168,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Returns the position (start and end offset) of the first occurrence of specified html
 	     * fragment inside connected html source
-	     * @param fragment — html string to search for
-	     * @param fromIndex — index to start search from
+	     * @param fragment - html string to search for
+	     * @param fromIndex - index to start search from
 	     */
 
 	  }, {
@@ -214,9 +236,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * Returns the first occurrence of specified html fragment inside connected html source
-	     * @param fragment — html string to search for
-	     * @param fromIndex — index to start search from
-	     * @returns {string|null}  
+	     * @param fragment - html string to search for
+	     * @param fromIndex - index to start search from
+	     * @returns {string|null}
 	     */
 
 	  }, {
@@ -228,7 +250,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * Returns the position (start and end offset) of target element in source html code
-	     * @param element — element to search for
+	     * @param element - element to search for
 	     * @return {string|null}
 	     */
 
@@ -237,7 +259,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function findElementPosition(element) {
 	      if (!this._dom) throw new Error("Document is not connected");
 	      if (!(0, _documentNodes.isElement)(element)) throw new TypeError("Element must be an ELEMENT_NODE");
-	      if (this._dom !== element.ownerDocument) throw new Error("Element must be a child of connected Document");
+	      if (this._dom !== element.ownerDocument || !element.parentElement) throw new Error("Element must be a child of connected Document");
 	      var preffixHTML = (0, _getHTMLBeforeElement2.default)(element);
 	      var preffixPosition = this.findFragmentPosition(preffixHTML);
 	      // Throw an error if preffix position was not found
@@ -247,7 +269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * Returns the source html code of target element
-	     * @param element — element to search for
+	     * @param element - element to search for
 	     * @return {string|null}
 	     */
 
@@ -255,7 +277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: "findElement",
 	    value: function findElement(element) {
 	      var position = this.findElementPosition(element);
-	      return position ? this._html.substring(position.start, position.end) : null;
+	      return this._html.substring(position.start, position.end);
 	    }
 	  }]);
 

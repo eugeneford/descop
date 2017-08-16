@@ -33,7 +33,7 @@ Descop is a library which allows you to find a source code position of target do
 Library can be used both in Node.js and directly in Browser.
 It is well-documented and completely covered with test specs (excluding webpack bundling definitions and expressions).
 
-If you want to add some features or to suggest any idea, feel free ? [contributions are always welcome](#contributing-to-descop).
+If you want to add some features or to suggest any idea, feel free - [contributions are always welcome](#contributing-to-descop).
 
 ## How to Install
 #### Using NPM
@@ -125,7 +125,7 @@ descop.connectSource(html);
 Connects a document to Descop instance
 ```js
 var descop = new Descop();
-descop.connectSource(document);
+descop.connectDocument(document);
 ```
 
 ### findFragmentPosition(fragment, fromIndex)
@@ -174,13 +174,33 @@ var html = descop.findElement(element);
 // html => "<div>Hello World</div>"
 ```
 
+### getSource()
+Gets current html source.
+```js
+var descop = new Descop();
+
+...
+
+var source = descop.getSource();
+```
+
+### getDocument()
+Gets current document.
+```js
+var descop = new Descop();
+
+...
+
+var doc = descop.getDocument();
+```
+
 ## Contributing to Descop
 Contributions are always welcome.
 Before contributing please read the [code of conduct](https://js.foundation/community/code-of-conduct) &
 [search the issue tracker](https://github.com/eugeneford/descop/issues) (your issue may have already been discussed or fixed).
 
 To contribute, follow next steps:
-* Fork Descop 
+* Fork Descop
 * Commit your changes
 * Open a Pull Request.
 

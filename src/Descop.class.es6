@@ -19,6 +19,22 @@ class Descop {
   }
 
   /**
+   * Gets current html source
+   * @return {string|null}
+   */
+  getSource(){
+    return this._html;
+  }
+
+  /**
+   * Gets current document
+   * @return {Document|null}
+   */
+  getDocument(){
+    return this._dom;
+  }
+
+  /**
    * Connects an html source to Descop instance
    * @param html - target html source code
    * @throws TypeError - if {html} is not a String
@@ -115,7 +131,7 @@ class Descop {
   findElementPosition(element) {
     if (!this._dom) throw new Error("Document is not connected");
     if (!isElement(element)) throw new TypeError("Element must be an ELEMENT_NODE");
-    if (this._dom !== element.ownerDocument) throw new Error("Element must be a child of connected Document");
+    if (this._dom !== element.ownerDocument || !element.parentElement) throw new Error("Element must be a child of connected Document");
     let preffixHTML = getHTMLBeforeElement(element);
     let preffixPosition = this.findFragmentPosition(preffixHTML);
     // Throw an error if preffix position was not found
@@ -130,8 +146,8 @@ class Descop {
    */
   findElement(element) {
     const position = this.findElementPosition(element);
-    return position ? this._html.substring(position.start, position.end) : null;
+    return this._html.substring(position.start, position.end);
   }
-}
+} 
 
 export default Descop;

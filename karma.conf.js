@@ -1,5 +1,4 @@
 // Karma configuration
-// Generated on Fri Jan 20 2017 11:26:25 GMT+0200 (FLE Standard Time)
 
 module.exports = function(config) {
   config.set({
@@ -17,7 +16,14 @@ module.exports = function(config) {
     },
     reporters: ['progress', 'coverage', 'coveralls'],
     port: 9876,
-    autoWatch: true,
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+    browsers: [process.env.TRAVIS ? 'Chrome_travis_ci' : 'Chrome'],
+    singleRun: true,
     captureTimeout: 4 * 60 * 1000
   })
 };
