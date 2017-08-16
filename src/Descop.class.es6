@@ -148,6 +148,6 @@ class Descop {
     const position = this.findElementPosition(element);
     return this._html.substring(position.start, position.end);
   }
-} 
+}
 
 export default Descop;

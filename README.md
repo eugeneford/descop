@@ -31,7 +31,7 @@ Descop is a library which allows you to find a source code position of target do
 > - Eugene Ford, author
 
 Library can be used both in Node.js and directly in Browser.
-It is well-documented and completely covered with test specs (excluding webpack bundling definitions and expressions).
+It is well-documented and completely covered with test specs (excluding webpack bundling definitions and external modules).
 
 If you want to add some features or to suggest any idea, feel free - [contributions are always welcome](#contributing-to-descop).
 
