@@ -230,6 +230,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // Try to skip the extra whitespaces inside the fragment whenever they exist
 	        if (!appropriateEntity && whitespace_reg.test(fragmentChar)) {
 	          whitespaces = fragmentReader.peekPattern(whitespace_reg, 0);
+
+	          // Stop the search if only trailing whitespaces have left inside the fragment
+	          if (fragmentReader.getSource().length < fragmentReader.getIndex() + whitespaces.length) {
+	            end = sourceReader.getIndex();
+	            break;
+	          }
+
 	          fragmentChar = fragmentReader.peek(1, whitespaces.length);
 	          entities = (0, _entitifier.getEntities)(fragmentChar);
 	          appropriateEntity = entities.find(function (entity) {

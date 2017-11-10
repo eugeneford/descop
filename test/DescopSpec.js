@@ -64,8 +64,13 @@ describe("Descop", function () {
     });
 
     it("Returned a correct position if fragment contains extra whitespaces", function () {
-      expect(descop.findFragmentPosition('<script>var a = function(){};\n    </script>'))
+      expect(descop.findFragmentPosition('<script>var a = function(){};      </script>'))
         .toEqual({start: 37, end: 80});
+    });
+
+    it("Returned a correct position if fragment contains trailing whitespaces", function () {
+      expect(descop.findFragmentPosition('<title>Example</title>     '))
+        .toEqual({start: 15, end: 37});
     });
 
     it("Returned null when fragment was not found", function () {
