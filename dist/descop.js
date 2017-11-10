@@ -100,10 +100,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+	var whitespace_reg = /(\r?\n|\s|\t)+/;
+
 	/**
 	 * A standardized way to find
 	 * a source code position of document element
 	 */
+
 	var Descop = function () {
 	  function Descop() {
 	    _classCallCheck(this, Descop);
@@ -197,22 +200,43 @@ return /******/ (function(modules) { // webpackBootstrap
 	          sourceChar = void 0,
 	          appropriateEntity = void 0,
 	          start = -1,
-	          end = -1;
+	          end = -1,
+	          whitespaces = void 0;
 
 	      while (!fragmentReader.eof() && !sourceReader.eof()) {
 	        fragmentChar = fragmentReader.read();
 	        entities = (0, _entitifier.getEntities)(fragmentChar);
 	        sourceChar = sourceReader.peek();
 
-	        // Skip unnecessary whitespaces inside source html
-	        if (fragmentChar !== sourceChar && !/\r?\n|\s|\t/.test(fragmentChar) && /\r?\n|\s|\t/.test(sourceChar)) {
-	          sourceReader.skipPattern(/(\r?\n|\s|\t)+/);
+	        // Try to find appropriate entity
+	        appropriateEntity = entities.find(function (entity) {
+	          return entity === sourceReader.peek(entity.length);
+	        });
+
+	        // Try to skip the extra whitespaces inside the source whenever they exist
+	        if (!appropriateEntity && whitespace_reg.test(sourceChar)) {
+	          whitespaces = sourceReader.peekPattern(whitespace_reg, 1);
+	          appropriateEntity = entities.find(function (entity) {
+	            return entity === sourceReader.peek(entity.length, whitespaces.length + 1);
+	          });
+	          if (appropriateEntity) sourceReader.skip(whitespaces.length);
 	        }
 
 	        // Try to find appropriate entity
 	        appropriateEntity = entities.find(function (entity) {
 	          return entity === sourceReader.peek(entity.length);
 	        });
+
+	        // Try to skip the extra whitespaces inside the fragment whenever they exist
+	        if (!appropriateEntity && whitespace_reg.test(fragmentChar)) {
+	          whitespaces = fragmentReader.peekPattern(whitespace_reg, 0);
+	          fragmentChar = fragmentReader.peek(1, whitespaces.length);
+	          entities = (0, _entitifier.getEntities)(fragmentChar);
+	          appropriateEntity = entities.find(function (entity) {
+	            return entity === sourceReader.peek(entity.length);
+	          });
+	          if (appropriateEntity) fragmentReader.skip(whitespaces.length);
+	        }
 
 	        // Reset fragment reader if entity was not found
 	        if (!appropriateEntity) {
@@ -468,19 +492,19 @@ return /******/ (function(modules) { // webpackBootstrap
 		      // If we're at the end of the source
 		      if (this.eof()) return null;
 
-		      var sourceTrail = this._source.substring(this._index);
+		      var sourceTrail = this._source.substring(this._index + offset - 1);
 
 		      // Try to read a string pattern
 		      if (typeof pattern === "string") {
 		        for (var i = 0; i < pattern.length; i++) {
-		          if (pattern[i] !== sourceTrail[i + offset - 1]) return null;
+		          if (pattern[i] !== sourceTrail[i]) return null;
 		        }
 		        return this.peek(pattern.length, offset);
 		      }
 		      // Or, read a RegExp pattern
 		      else if (pattern instanceof RegExp) {
 		          if (!this._normalizeRegExp(pattern).test(sourceTrail)) return null;
-		          return this.peek(RegExp.lastMatch.length, offset);
+		          return RegExp.lastMatch;
 		        }
 		        // Otherwise, throw an Error
 		        else throw new TypeError("Pattern must be a String or RegExp");
@@ -612,7 +636,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		    }
 
 		    /**
-		     * Reset current cursor position
+		     * Resets current cursor position
 		     */
 
 		  }, {

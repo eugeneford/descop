@@ -5,6 +5,8 @@ import harmonizeHTML from "./utils/harmonizeHTML";
 import {getEntities} from "./utils/entitifier";
 import getHTMLBeforeElement from "./utils/getHTMLBeforeElement";
 
+const whitespace_reg = /(\r?\n|\s|\t)+/;
+
 /**
  * A standardized way to find
  * a source code position of document element
@@ -77,20 +79,34 @@ class Descop {
     sourceReader.reset();
     sourceReader.skip(fromIndex);
 
-    let entities, fragmentChar, sourceChar, appropriateEntity, start = -1, end = -1;
+    let entities, fragmentChar, sourceChar, appropriateEntity, start = -1, end = -1, whitespaces;
 
     while (!fragmentReader.eof() && !sourceReader.eof()) {
       fragmentChar = fragmentReader.read();
       entities = getEntities(fragmentChar);
       sourceChar = sourceReader.peek();
 
-      // Skip unnecessary whitespaces inside source html
-      if (fragmentChar !== sourceChar && !/\r?\n|\s|\t/.test(fragmentChar) && /\r?\n|\s|\t/.test(sourceChar)){
-        sourceReader.skipPattern(/(\r?\n|\s|\t)+/);
+      // Try to find appropriate entity
+      appropriateEntity = entities.find(entity => entity === sourceReader.peek(entity.length));
+
+      // Try to skip the extra whitespaces inside the source whenever they exist
+      if (!appropriateEntity && whitespace_reg.test(sourceChar)){
+        whitespaces = sourceReader.peekPattern(whitespace_reg, 1);
+        appropriateEntity = entities.find(entity => entity === sourceReader.peek(entity.length, whitespaces.length + 1));
+        if (appropriateEntity) sourceReader.skip(whitespaces.length);
       }
 
       // Try to find appropriate entity
       appropriateEntity = entities.find(entity => entity === sourceReader.peek(entity.length));
+
+      // Try to skip the extra whitespaces inside the fragment whenever they exist
+      if (!appropriateEntity && whitespace_reg.test(fragmentChar)){
+        whitespaces = fragmentReader.peekPattern(whitespace_reg, 0);
+        fragmentChar = fragmentReader.peek(1, whitespaces.length);
+        entities = getEntities(fragmentChar);
+        appropriateEntity = entities.find(entity => entity === sourceReader.peek(entity.length));
+        if (appropriateEntity) fragmentReader.skip(whitespaces.length);
+      }
 
       // Reset fragment reader if entity was not found
       if (!appropriateEntity){

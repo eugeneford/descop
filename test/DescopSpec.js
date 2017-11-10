@@ -1,9 +1,7 @@
 describe("Descop", function () {
   var descop, dom;
   var parser = new DOMParser();
-  var html = "<!DOCTYPE html><title>Example</title><div id='id1'\nclass='cl1'>text</div><div></div><div></div>&amp;<div id='id2'> Hello World</div>";
-
-  console.info(html);
+  var html = "<!DOCTYPE html><title>Example</title><script>var a = function(){};\n    </script><div id='id1'\nclass='cl1'>text</div><div></div><div></div>&amp;<div id='id2'> Hello World</div>";
 
   beforeEach(function () {
     descop = new Descop();
@@ -57,12 +55,12 @@ describe("Descop", function () {
 
     it("Returned correct position for #id1", function () {
       expect(descop.findFragmentPosition("<div id=\"id1\" class=\"cl1\">text</div>"))
-        .toEqual({start: 37, end: 73});
+        .toEqual({start: 80, end: 116});
     });
 
     it("Returned a correct div based on fromIndex value", function () {
-      expect(descop.findFragmentPosition("<div></div>", 79))
-        .toEqual({start: 84, end: 95});
+      expect(descop.findFragmentPosition("<div></div>", 122))
+        .toEqual({start: 127, end: 138});
     });
 
     it("Returned null when fragment was not found", function () {
@@ -87,7 +85,13 @@ describe("Descop", function () {
     it("Returned a correct position for #id2", function () {
       var element = dom.getElementById("id2");
       expect(descop.findElementPosition(element))
-        .toEqual({start: 100, end: 132});
+        .toEqual({start: 143, end: 175});
+    });
+
+    it("Returned a correct position for script", function () {
+      var element = dom.querySelector("script");
+      expect(descop.findElementPosition(element))
+        .toEqual({start: 37, end: 80});
     });
 
     it("Threw an Error when document was not connected", function () {

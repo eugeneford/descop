@@ -45,6 +45,6 @@
     ]
   },
   "dependencies": {
-    "streader": "^1.0.0"
+    "streader": "^1.0.1"
   }
 }
