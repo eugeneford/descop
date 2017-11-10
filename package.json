@@ -1,6 +1,6 @@
 {
   "name": "descop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small utility Library allowing you to get caret [start, end] offset position in HTML source code for selected element",
   "main": "dist/descop.js",
   "repository": {
