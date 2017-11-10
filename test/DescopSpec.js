@@ -63,6 +63,11 @@ describe("Descop", function () {
         .toEqual({start: 127, end: 138});
     });
 
+    it("Returned a correct position if fragment contains extra whitespaces", function () {
+      expect(descop.findFragmentPosition('<script>var a = function(){};\n    </script>'))
+        .toEqual({start: 37, end: 80});
+    });
+
     it("Returned null when fragment was not found", function () {
       expect(descop.findFragmentPosition("<h1></h1>"))
         .toBe(null);
@@ -86,12 +91,6 @@ describe("Descop", function () {
       var element = dom.getElementById("id2");
       expect(descop.findElementPosition(element))
         .toEqual({start: 143, end: 175});
-    });
-
-    it("Returned a correct position for script", function () {
-      var element = dom.querySelector("script");
-      expect(descop.findElementPosition(element))
-        .toEqual({start: 37, end: 80});
     });
 
     it("Threw an Error when document was not connected", function () {
