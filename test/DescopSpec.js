@@ -77,6 +77,11 @@ describe("Descop", function () {
       expect(descop.findFragmentPosition("<h1></h1>"))
         .toBe(null);
     });
+
+    it("Returned a correct position when multi-character entity represents the upcoming fragment chars", function () {
+      expect(descop.findFragmentPosition('&amp;'))
+        .toEqual({start: 138, end: 143});
+    });
   });
 
   describe("findFragment(fragment, fromIndex)", function () {

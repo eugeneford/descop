@@ -87,17 +87,14 @@ class Descop {
       sourceChar = sourceReader.peek();
 
       // Try to find appropriate entity
-      appropriateEntity = entities.find(entity => entity === sourceReader.peek(entity.length));
+      appropriateEntity = this.peekAppropriateEntity(entities);
 
       // Try to skip the extra whitespaces inside the source whenever they exist
       if (!appropriateEntity && whitespace_reg.test(sourceChar)){
         whitespaces = sourceReader.peekPattern(whitespace_reg, 1);
-        appropriateEntity = entities.find(entity => entity === sourceReader.peek(entity.length, whitespaces.length + 1));
+        appropriateEntity = this.peekAppropriateEntity(entities, whitespaces.length + 1);
         if (appropriateEntity) sourceReader.skip(whitespaces.length);
       }
-
-      // Try to find appropriate entity
-      appropriateEntity = entities.find(entity => entity === sourceReader.peek(entity.length));
 
       // Try to skip the extra whitespaces inside the fragment whenever they exist
       if (!appropriateEntity && whitespace_reg.test(fragmentChar)){
@@ -111,7 +108,7 @@ class Descop {
 
         fragmentChar = fragmentReader.peek(1, whitespaces.length);
         entities = getEntities(fragmentChar);
-        appropriateEntity = entities.find(entity => entity === sourceReader.peek(entity.length));
+        appropriateEntity = this.peekAppropriateEntity(entities);
         if (appropriateEntity) fragmentReader.skip(whitespaces.length);
       }
 
@@ -170,6 +167,31 @@ class Descop {
   findElement(element) {
     const position = this.findElementPosition(element);
     return this._html.substring(position.start, position.end);
+  }
+
+  /**
+   * Picks the most suitable representation of next source character
+   * from the provided list of html entities
+   * @param entities - list of html entities to match.
+   * @param fromIndex - index to start search from. Next character by default.
+   */
+  peekAppropriateEntity(entities, fromIndex = 1) {
+    const fragmentReader = this._fragmentReader;
+    const sourceReader = this._sourceReader;
+
+    return entities.find(entity => {
+      // Skip entity if it doesn't fit
+      if (entity !== sourceReader.peek(entity.length, fromIndex)) { return false; }
+
+      // Skip multi-character entity if it represents the upcoming fragment characters
+      if (entity.length > 1) {
+        let fragmentSequence = fragmentReader.peek(entity.length, fromIndex - 1);
+        let sourceSequence = sourceReader.peek(entity.length, fromIndex);
+        return fragmentSequence !== sourceSequence;
+      }
+
+      return true;
+    });
   }
 }
 
